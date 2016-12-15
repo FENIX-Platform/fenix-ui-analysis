@@ -43,11 +43,11 @@ define([
 
         var analysis = this.createInstance({
             el: s.STANDARD,
-            lang: "FR",
+            lang: "EN",
             environment: environment,
-            catalog:{"pluginRegistry":{"contextSystem":{"selector":{"source":[{"value":"cstat_ago","label":"CountrySTAT Angola"}],"default":["cstat_ago"]}},"dataDomain":{"cl":{"uid":"CSTAT_Core","level":1,"levels":1}}},"baseFilter":{"dsd.contextSystem":{"enumeration":["cstat_ago"]},"meContent.resourceRepresentationType":{"enumeration":["dataset"]}},"defaultSelectors":["freeText","dataDomain","region","referenceArea"],"menuExcludedItems":["accessibility"]}
+            //catalog:{"pluginRegistry":{"contextSystem":{"selector":{"source":[{"value":"cstat_ago","label":"CountrySTAT Angola"}],"default":["cstat_ago"]}},"dataDomain":{"cl":{"uid":"CSTAT_Core","level":1,"levels":1}}},"baseFilter":{"dsd.contextSystem":{"enumeration":["cstat_ago"]},"meContent.resourceRepresentationType":{"enumeration":["dataset"]}},"defaultSelectors":["freeText","dataDomain","region","referenceArea"],"menuExcludedItems":["accessibility"]}
 
-        /*            catalog : {
+                 catalog : {
          defaultSelectors : ['contextSystem', "dataDomain","resourceType" ],
          selectorsRegistry : {
          contextSystem : {
@@ -71,7 +71,7 @@ define([
          }
          }
          }
-         },*/
+         }
         //catalog: false
     })
         ;
@@ -148,7 +148,7 @@ define([
 
         //map
         require("../../../node_modules/leaflet/dist/leaflet.css");
-        require("../../../node_modules/fenix-ui-map/dist/fenix-ui-map.min.css");
+        //require("../../../node_modules/fenix-ui-map/dist/fenix-ui-map.min.css");
 
         //dropdown selector
         require("../../../node_modules/selectize/dist/css/selectize.bootstrap3.css");
