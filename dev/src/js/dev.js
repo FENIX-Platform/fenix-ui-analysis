@@ -148,6 +148,10 @@ define([
 
         //map
         require("../../../node_modules/leaflet/dist/leaflet.css");
+        require("../../../node_modules/ion-rangeslider/css/ion.rangeSlider.css");
+        require("../../../node_modules/ion-rangeslider/css/ion.rangeSlider.skinNice.css");
+        require("../../../node_modules/fenix-ui-map-creator/src/css/fenix-ui-leaflet.css");
+        require("../../../node_modules/fenix-ui-map-creator/src/css/fenix-ui-map-creator.css");
         require("../../../node_modules/fenix-ui-map-creator/dist/fenix-ui-map-creator.min.css");
 
         //dropdown selector
