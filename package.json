@@ -1,6 +1,6 @@
 {
   "name": "fenix-ui-analysis",
-  "version": "3.0.0-beta.55",
+  "version": "3.0.0-beta.56",
   "description": "FENIX analysis",
   "main": "dist/fenix-ui-analysis.min.js",
   "scripts": {
@@ -19,6 +19,18 @@
     "url": "https://github.com/FENIX-Platform/fenix-ui-analysis/issues"
   },
   "homepage": "https://github.com/FENIX-Platform/fenix-analysis#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "draggabilly": "^2.1.1",
+    "fenix-ui-catalog": "^2.0.0-beta.32",
+    "fenix-ui-filter-utils": "^1.0.0-beta.16",
+    "fenix-ui-reports": "^2.0.0-beta.1",
+    "fenix-ui-visualization-box": "^2.0.0-beta.66",
+    "jquery": "^3.1.0",
+    "loglevel": "^1.4.1",
+    "packery": "^2.1.1",
+    "underscore": "^1.8.3"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.10",
@@ -47,17 +59,5 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.15.1"
-  },
-  "dependencies": {
-    "bootstrap": "^3.3.7",
-    "draggabilly": "^2.1.1",
-    "fenix-ui-catalog": "^2.0.0-beta.32",
-    "fenix-ui-filter-utils": "^1.0.0-beta.16",
-    "fenix-ui-reports": "^2.0.0-beta.1",
-    "fenix-ui-visualization-box": "^2.0.0-beta.65",
-    "jquery": "^3.1.0",
-    "loglevel": "^1.4.1",
-    "packery": "^2.1.1",
-    "underscore": "^1.8.3"
   }
 }
