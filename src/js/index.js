@@ -12,7 +12,7 @@ define([
     'fenix-ui-visualization-box',
     'fenix-ui-filter-utils',
     "fenix-ui-reports",
-    './fx-fluid-grid',
+    './fx-fluid-grid'
 ], function ($, _, log, ERR, EVT, C, TemplateAnalysis, TemplateItem, i18nLabels, Catalog, Box, Utils, Report, Grid) {
 
     'use strict';
@@ -59,7 +59,9 @@ define([
 
             //make async the event
             window.setTimeout(_.bind(function () {
-                this._trigger("ready");
+                this._trigger("ready", {
+                    instance: this
+                });
             }, this), 100);
 
             return this;
@@ -111,16 +113,23 @@ define([
      * @returns {*}
      *
      */
-    Analysis.prototype.add = function ( obj ){
+    Analysis.prototype.add = function (obj) {
         log.info("Add model to analysis:");
         log.info(obj);
 
-        if (!obj.hasOwnProperty('uid')){
+        if (!obj.hasOwnProperty('uid')) {
             log.error("Impossible to add model to Analysis: uid missing. Abort add() fn");
             return;
         }
 
         this._addToGrid(obj);
+    };
+
+    /**
+     * Return the amount of visualization boxes of the instance
+     * */
+    Analysis.prototype.getVisualizationBoxesAmount = function () {
+        return Object.keys(this.gridItems).length;
     };
 
     // end API
@@ -149,7 +158,7 @@ define([
 
         // catalog proxied config
         //this.catalogConfig =  this.initial.catalog || C.catalog;
-        this.catalogConfig = (typeof this.initial.catalog === "boolean" && this.initial.catalog === false )? false : this.initial.catalog || C.catalog;
+        this.catalogConfig = (typeof this.initial.catalog === "boolean" && this.initial.catalog === false ) ? false : this.initial.catalog || C.catalog;
 
         // box proxied config
         this.boxConfig = this.initial.box || C.box;
@@ -193,7 +202,7 @@ define([
 
     Analysis.prototype._attach = function () {
 
-        var $html = $(TemplateAnalysis($.extend(true, {hideCatalog : !!this.catalogConfig}, i18nLabels)));
+        var $html = $(TemplateAnalysis($.extend(true, {hideCatalog: !!this.catalogConfig}, i18nLabels)));
 
         this.$el.html($html);
 
@@ -220,7 +229,9 @@ define([
         if (!!this.catalogConfig) {
             this.$catalogButton.on("click", _.bind(function () {
                 this.$modal.modal("show");
-                this._trigger("catalog.show");
+                this._trigger("catalog.show", {
+                    instance: this
+                });
             }, this));
 
             this.catalog.on("select", _.bind(function (payload) {
@@ -228,6 +239,7 @@ define([
                 this._addToGridFromCatalog(payload);
             }, this));
         }
+
 
     };
 
@@ -257,7 +269,7 @@ define([
             cache: this.cache,
             environment: this.environment,
             el: s.CATALOG_EL,
-            lang : this.lang
+            lang: this.lang
         }, this.catalogConfig);
 
         this.catalog = new Catalog(config);
@@ -292,7 +304,7 @@ define([
         log.info(payload);
 
         this.report.export({
-            format : "table",
+            format: "table",
             config: payload
         });
     };
@@ -308,7 +320,7 @@ define([
                 el: $blank,
                 environment: this.environment,
                 cache: this.cache,
-                lang : this.lang
+                lang: this.lang
             }, this.boxConfig),
             box;
 
@@ -325,6 +337,14 @@ define([
             this._checkCourtesy();
 
             this._bindBoxEventListeners(box);
+
+            this._trigger("add", {
+                box: box,
+                instance: this
+            });
+            this._trigger("change", {
+                instance: this
+            });
 
         }, this), 100);
 
@@ -360,6 +380,14 @@ define([
         // hide courtesy message if it is first box
         this._checkCourtesy();
 
+        this._trigger("remove", {
+            box: obj,
+            instance: this
+        });
+
+        this._trigger("change", {
+            instance: this
+        });
     };
 
     Analysis.prototype._bindBoxEventListeners = function (Box) {
@@ -479,7 +507,7 @@ define([
 
     Analysis.prototype._checkCourtesy = function () {
 
-        var length = Object.keys(this.gridItems).length;
+        var length = this.getVisualizationBoxesAmount();
 
         if (length === 0) {
             this._showCourtesy();
@@ -589,7 +617,6 @@ define([
         return obj;
 
     };
-
 
     return Analysis;
 });

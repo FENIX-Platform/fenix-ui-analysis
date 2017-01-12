@@ -20,7 +20,7 @@ define([
 
         this._importThirdPartyCss();
 
-        log.setLevel('trace');
+        log.setLevel('silent');
 
         this.start();
     }
@@ -40,41 +40,45 @@ define([
 
     Dev.prototype._renderStandard = function () {
 
-
         var analysis = this.createInstance({
-            el: s.STANDARD,
-            lang: "EN",
-            environment: environment,
-            //catalog:{"pluginRegistry":{"contextSystem":{"selector":{"source":[{"value":"cstat_ago","label":"CountrySTAT Angola"}],"default":["cstat_ago"]}},"dataDomain":{"cl":{"uid":"CSTAT_Core","level":1,"levels":1}}},"baseFilter":{"dsd.contextSystem":{"enumeration":["cstat_ago"]},"meContent.resourceRepresentationType":{"enumeration":["dataset"]}},"defaultSelectors":["freeText","dataDomain","region","referenceArea"],"menuExcludedItems":["accessibility"]}
+                el: s.STANDARD,
+                lang: "EN",
+                environment: environment,
+                //catalog:{"pluginRegistry":{"contextSystem":{"selector":{"source":[{"value":"cstat_ago","label":"CountrySTAT Angola"}],"default":["cstat_ago"]}},"dataDomain":{"cl":{"uid":"CSTAT_Core","level":1,"levels":1}}},"baseFilter":{"dsd.contextSystem":{"enumeration":["cstat_ago"]},"meContent.resourceRepresentationType":{"enumeration":["dataset"]}},"defaultSelectors":["freeText","dataDomain","region","referenceArea"],"menuExcludedItems":["accessibility"]}
 
-                 catalog : {
-         defaultSelectors : ['contextSystem', "dataDomain","resourceType" ],
-         selectorsRegistry : {
-         contextSystem : {
-         selector : {
-         id : "dropdown",
-         source : [
-         {value : "uneca", label : "UNECA"},
-         {value : "FAOSTAT", label : "FAOSTAT"}
-         ],
-         default : ["uneca"],
-         hideSummary : true
-         },
+                catalog: {
+                    defaultSelectors: ['contextSystem', "dataDomain", "resourceType"],
+                    selectorsRegistry: {
+                        contextSystem: {
+                            selector: {
+                                id: "dropdown",
+                                source: [
+                                    {value: "uneca", label: "UNECA"},
+                                    {value: "FAOSTAT", label: "FAOSTAT"}
+                                ],
+                                default: ["uneca"],
+                                hideSummary: true
+                            },
 
-         template : {
-         hideRemoveButton : false
-         },
+                            template: {
+                                hideRemoveButton: false
+                            },
 
-         format : {
-         output : "enumeration",
-         metadataAttribute: "dsd.contextSystem"
-         }
-         }
-         }
-         }
-        //catalog: false
-    })
-        ;
+                            format: {
+                                output: "enumeration",
+                                metadataAttribute: "dsd.contextSystem"
+                            }
+                        }
+                    }
+                }
+                //catalog: false
+            });
+
+        analysis.on("change", function( arg) {
+
+            console.log(arg.instance.getVisualizationBoxesAmount())
+
+        });
 
         $(s.ADD_BTN).on("click", function () {
             analysis.add({
