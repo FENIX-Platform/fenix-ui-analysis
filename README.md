@@ -83,3 +83,6 @@ analysis.on("catalog.show", function () {...});
 
 - `catalog.show` : triggered when a catalog is shown
 - `ready` : triggered when a instance is ready
+- `add` : triggered when a new visualization box is added
+- `remove` : triggered when a visualization box is removed
+- `change` : triggered when 'add' or 'remove' events are triggered
