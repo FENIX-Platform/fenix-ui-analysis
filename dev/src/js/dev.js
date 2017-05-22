@@ -13,14 +13,14 @@ define([
             ADD_BTN: "#add-btn"
         },
         instances = [],
-        environment = "production";
+        environment = "demo";
 
     function Dev() {
         console.clear();
 
         this._importThirdPartyCss();
 
-        log.setLevel('trace');
+        log.setLevel('silent');
 
         this.start();
     }
@@ -42,38 +42,40 @@ define([
 
 
         var analysis = this.createInstance({
-            el: s.STANDARD,
-            lang: "FR",
-            environment: environment,
-            catalog:{"pluginRegistry":{"contextSystem":{"selector":{"source":[{"value":"cstat_ago","label":"CountrySTAT Angola"}],"default":["cstat_ago"]}},"dataDomain":{"cl":{"uid":"CSTAT_Core","level":1,"levels":1}}},"baseFilter":{"dsd.contextSystem":{"enumeration":["cstat_ago"]},"meContent.resourceRepresentationType":{"enumeration":["dataset"]}},"defaultSelectors":["freeText","dataDomain","region","referenceArea"],"menuExcludedItems":["accessibility"]}
+                el: s.STANDARD,
+                lang: "FR",
+                loadResourceServiceQueryParams : {
+                    perPage: 2001,
+                    maxSize: 2000
+                },
+                environment: environment,
+                catalog: {
+                    defaultSelectors: ['contextSystem', "dataDomain", "resourceType"],
+                    selectorsRegistry: {
+                        contextSystem: {
+                            selector: {
+                                id: "dropdown",
+                                source: [
+                                    {value: "uneca", label: "UNECA"},
+                                    {value: "FAOSTAT", label: "FAOSTAT"},
+                                    {value: "adam", label: "ADAM"}
+                                ],
+                                default: ["adam"],
+                                hideSummary: true
+                            },
 
-        /*            catalog : {
-         defaultSelectors : ['contextSystem', "dataDomain","resourceType" ],
-         selectorsRegistry : {
-         contextSystem : {
-         selector : {
-         id : "dropdown",
-         source : [
-         {value : "uneca", label : "UNECA"},
-         {value : "FAOSTAT", label : "FAOSTAT"}
-         ],
-         default : ["uneca"],
-         hideSummary : true
-         },
+                            template: {
+                                hideRemoveButton: false
+                            },
 
-         template : {
-         hideRemoveButton : false
-         },
-
-         format : {
-         output : "enumeration",
-         metadataAttribute: "dsd.contextSystem"
-         }
-         }
-         }
-         },*/
-        //catalog: false
-    })
+                            format: {
+                                output: "enumeration",
+                                metadataAttribute: "dsd.contextSystem"
+                            }
+                        }
+                    }
+                }
+            })
         ;
 
         $(s.ADD_BTN).on("click", function () {
