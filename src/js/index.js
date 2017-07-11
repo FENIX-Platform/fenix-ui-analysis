@@ -326,6 +326,14 @@ define([
 
             this._bindBoxEventListeners(box);
 
+            this._trigger("add", {
+                box: box,
+                instance: this
+            });
+            this._trigger("change", {
+                instance: this
+            });
+
         }, this), 100);
 
     };
@@ -386,6 +394,12 @@ define([
 
         Box.on("ready", function () {
             self.grid.redraw();
+        });
+
+        Box.on("noelem", function (param) {
+            self._trigger("noelem", {
+                instance: self
+            });
         });
 
     };
