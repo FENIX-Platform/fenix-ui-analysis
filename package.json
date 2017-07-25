@@ -1,6 +1,6 @@
 {
   "name": "fenix-ui-analysis",
-  "version": "3.0.0-beta.68",
+  "version": "3.0.0-beta.71",
   "description": "FENIX analysis",
   "main": "dist/fenix-ui-analysis.min.js",
   "scripts": {
@@ -51,11 +51,11 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "draggabilly": "^2.1.1",
-    "fenix-ui-catalog": "^2.0.0-beta.39",
+    "fenix-ui-catalog": "^2.0.0-beta.40",
     "fenix-ui-filter-utils": "^1.0.0-beta.18",
     "fenix-ui-map": "^2.7.0",
     "fenix-ui-reports": "^2.0.0-beta.6",
-    "fenix-ui-visualization-box": "^2.0.0-beta.82",
+    "fenix-ui-visualization-box": "^2.0.0-beta.85",
     "jquery": "^3.1.0",
     "loglevel": "^1.4.1",
     "packery": "^2.1.1",
