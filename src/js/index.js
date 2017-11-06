@@ -392,6 +392,10 @@ define([
             self._setBoxSize(payload)
         });
 
+        Box.on("initializated", function (payload) {
+            self._trigger("initialized", payload);
+        });
+
         Box.on("ready", function () {
             self.grid.redraw();
         });
