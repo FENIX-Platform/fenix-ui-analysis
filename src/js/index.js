@@ -70,6 +70,12 @@ define([
         }
     }
 
+    Analysis.prototype.getVisualizationBoxesAmount = function () {
+        var length = Object.keys(this.gridItems).length;
+        console.log(length);
+        return length;
+    }
+
     /**
      * Reset the view content
      * @return {null}
@@ -364,6 +370,10 @@ define([
 
         delete this.gridItems[obj.id];
         this.grid.redraw();
+
+        this._trigger("removed", {
+            instance: this
+        });
 
         // hide courtesy message if it is first box
         this._checkCourtesy();
