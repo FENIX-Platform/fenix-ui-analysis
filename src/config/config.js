@@ -12,6 +12,8 @@ define(function () {
             menuExcludedItems : [],
         },
 
+        autostart : false,
+
         box: {
             hideMinimizeButton : true
         },

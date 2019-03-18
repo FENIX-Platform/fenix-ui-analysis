@@ -59,6 +59,10 @@ define([
 
             //make async the event
             window.setTimeout(_.bind(function () {
+                if (this.autostart) {
+                    this.$modal.modal("show");
+                    this._trigger("catalog.show");
+                }
                 this._trigger("ready");
             }, this), 100);
 
@@ -219,6 +223,8 @@ define([
         this.gridItems = {};
         this.pulsingButtonClassName = C.pulsingButtonClassName;
 
+        this.autostart = this.initial.autostart || C.autostart;
+
     };
 
     Analysis.prototype._bindEventListeners = function () {
@@ -233,6 +239,11 @@ define([
                 this.$modal.modal("hide");
                 this._addToGridFromCatalog(payload);
             }, this));
+
+            if (this.autostart) {
+                this.$modal.modal("show");
+                this._trigger("catalog.show");
+            }
         }
 
     };

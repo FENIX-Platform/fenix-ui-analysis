@@ -50,79 +50,81 @@ define([
                 },
                 environment: environment,
                 catalog: {
-                pluginRegistry: {
-                    contextSystem: {
-                        selector: {
-                            id: 'dropdown',
-                            source: [
-                                {value: "cstat_training", label: "CountrySTAT Training"}
-                            ],
-                            default: ["cstat_training"]
-                        }
-                    },
-                    dataDomain: {
-                        selector: {
-                            id : "dropdown",
-                            config : {
-                                plugins: ["remove_button"], //in combination with mode:"multi" create a "X" button to remove items
-                                mode: "multi"
+                    pagination: false,
+                    perPage: 10,
+                    pluginRegistry: {
+                        contextSystem: {
+                            selector: {
+                                id: 'dropdown',
+                                source: [
+                                    {value: "cstat_training", label: "CountrySTAT Training"}
+                                ],
+                                default: ["cstat_training"]
                             }
                         },
-                        cl : {
-                            uid:  "CSTAT_Core"
-                        },
-                        format : {
-                            output : "codes",
-                            metadataAttribute: "meContent.seCoverage.coverageSectors"
-                        }
-
-                    },
-                    referencePeriod: {
-                        selector: {
-                            id : "dropdown",
-                            config: {
-                                plugins: ["remove_button"], //in combination with mode:"multi" create a "X" button to remove items
+                        dataDomain: {
+                            selector: {
+                                id : "dropdown",
+                                config : {
+                                    plugins: ["remove_button"], //in combination with mode:"multi" create a "X" button to remove items
+                                    mode: "multi"
+                                }
                             },
-                            sort: function (a, b) {
-                                var hash = {  9:1, 6:2, 4:3, 3:4, 14:5, 13:6, 12:7, 11:8, 10:9, 8:10, 7:11, 5:12, 2:13, 1:14 };
-                                return hash[a.value] - hash[b.value];
+                            cl : {
+                                uid:  "CSTAT_Core"
+                            },
+                            format : {
+                                output : "codes",
+                                metadataAttribute: "meContent.seCoverage.coverageSectors"
                             }
 
                         },
-                        cl : {
-                            uid: "FAO_Period_cstat",
-                            version: "1.0"
+                        referencePeriod: {
+                            selector: {
+                                id : "dropdown",
+                                config: {
+                                    plugins: ["remove_button"], //in combination with mode:"multi" create a "X" button to remove items
+                                },
+                                sort: function (a, b) {
+                                    var hash = {  9:1, 6:2, 4:3, 3:4, 14:5, 13:6, 12:7, 11:8, 10:9, 8:10, 7:11, 5:12, 2:13, 1:14 };
+                                    return hash[a.value] - hash[b.value];
+                                }
+
+                            },
+                            cl : {
+                                uid: "FAO_Period_cstat",
+                                version: "1.0"
+                            },
+                            format : {
+                                output : "codes",
+                                metadataAttribute: "meContent.seReferencePopulation.referencePeriod"
+                            }
                         },
-                        format : {
-                            output : "codes",
-                            metadataAttribute: "meContent.seReferencePopulation.referencePeriod"
+                        freeText: {
+                            selector : {
+                                id : "input",
+                                type : "text"
+                            },
+                            template : {
+                                footer: ""
+                            },
+                            format : {
+                                output : "freeText",
+                                metadataAttribute: "freetext"
+                            }
                         }
                     },
-                    freeText: {
-                        selector : {
-                            id : "input",
-                            type : "text"
-                        },
-                        template : {
-                            footer: ""
-                        },
-                        format : {
-                            output : "freeText",
-                            metadataAttribute: "freetext"
-                        }
+                    baseFilter: {
+                        "dsd.contextSystem": {"enumeration": ["cstat_training"]},
+                        "meContent.resourceRepresentationType": {"enumeration": ["dataset"]}
+                    },
+                    defaultSelectors: ["freeText", "dataDomain", "referenceArea"],
+                    menuExcludedItems: ["accessibility"],
+                    findServiceParams: {
+                        engine: ['cstat','fenix'],
+                        full: true,
+                        order : "meMaintenance.seUpdate.updateDate:desc" //order by last update
                     }
-                },
-                baseFilter: {
-                    "dsd.contextSystem": {"enumeration": ["cstat_training"]},
-                    "meContent.resourceRepresentationType": {"enumeration": ["dataset"]}
-                },
-                defaultSelectors: ["freeText", "dataDomain", "referenceArea"],
-                menuExcludedItems: ["accessibility"],
-                findServiceParams: {
-                    engine: ['cstat','fenix'],
-                    full: true,
-                    order : "meMaintenance.seUpdate.updateDate:desc" //order by last update
-                }
             }
             })
         ;
