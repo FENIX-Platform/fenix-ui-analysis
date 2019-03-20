@@ -1,6 +1,6 @@
 {
   "name": "fenix-ui-analysis",
-  "version": "3.0.0-beta.81",
+  "version": "3.0.0-beta.82",
   "description": "FENIX analysis",
   "main": "dist/fenix-ui-analysis.min.js",
   "scripts": {
@@ -26,18 +26,18 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
-    "handlebars": "^4.0.11",
-    "handlebars-loader": "^1.4.0",
+    "handlebars": "^4.1.1",
+    "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",
     "imports-loader": "^0.6.5",
-    "jshint": "^2.9.3",
+    "jshint": "^2.10.2",
     "jshint-loader": "^0.8.3",
     "json-loader": "^0.5.4",
     "karma": "^1.2.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.0.0",
-    "karma-coverage": "^1.1.1",
+    "karma-coverage": "^1.1.2",
     "karma-firefox-launcher": "^1.1.0",
     "karma-mocha": "^1.1.1",
     "karma-webpack": "^1.8.0",
@@ -49,16 +49,16 @@
     "webpack-dev-server": "^1.15.1"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "draggabilly": "^2.1.1",
-    "fenix-ui-catalog": "^2.0.0-beta.57",
+    "bootstrap": "^3.4.1",
+    "draggabilly": "^2.2.0",
+    "fenix-ui-catalog": "^2.0.0-beta.60",
     "fenix-ui-filter-utils": "^1.0.0-beta.18",
     "fenix-ui-map": "^2.7.0",
-    "fenix-ui-reports": "^2.0.0-beta.6",
-    "fenix-ui-visualization-box": "^2.0.0-beta.94",
+    "fenix-ui-reports": "^2.0.0-beta.9",
+    "fenix-ui-visualization-box": "^2.0.0-beta.95",
     "jquery": "^3.3.1",
     "loglevel": "^1.6.1",
-    "packery": "^2.1.1",
-    "underscore": "^1.8.3"
+    "packery": "^2.1.2",
+    "underscore": "^1.9.1"
   }
 }

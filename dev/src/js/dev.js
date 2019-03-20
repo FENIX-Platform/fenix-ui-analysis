@@ -49,6 +49,7 @@ define([
                     maxSize: 2000
                 },
                 environment: environment,
+                serviceProvider: "http://aidmonitordev.aws.fao.org/d3s/",
                 catalog: {
                     pagination: false,
                     perPage: 10,

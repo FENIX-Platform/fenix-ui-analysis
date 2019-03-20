@@ -76,7 +76,7 @@ define([
 
     Analysis.prototype.getVisualizationBoxesAmount = function () {
         var length = Object.keys(this.gridItems).length;
-        console.log(length);
+        //console.log(length);
         return length;
     }
 
@@ -153,6 +153,7 @@ define([
 
         this.$el = $(this.initial.el);
         this.environment = this.initial.environment;
+        this.serviceProvider = this.initial.serviceProvider || undefined;
         this.lang = this.initial.lang || C.lang;
         this.lang = this.lang.toUpperCase();
         this.cache = typeof this.initial.cache === "boolean" ? this.initial.cache : C.cache;
@@ -252,7 +253,8 @@ define([
 
         this.report = new Report({
             cache: this.cache,
-            environment: this.environment
+            environment: this.environment,
+            serviceProvider : this.serviceProvider
         });
 
         if (!!this.catalogConfig) {
@@ -273,6 +275,7 @@ define([
         var config = $.extend(true, {}, {
             cache: this.cache,
             environment: this.environment,
+            serviceProvider : this.serviceProvider,
             el: s.CATALOG_EL,
             lang : this.lang
         }, this.catalogConfig);
@@ -324,6 +327,7 @@ define([
             config = $.extend(true, obj, {
                 el: $blank,
                 environment: this.environment,
+                serviceProvider : this.serviceProvider,
                 cache: this.cache,
                 lang : this.lang
             }, this.boxConfig),
